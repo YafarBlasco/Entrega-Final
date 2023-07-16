@@ -1,0 +1,27 @@
+{% extends "Aplicacion/base.html" %}
+
+{% load static %}
+
+{% block main %}
+
+
+{% if form %}
+<h1>Administracion de Cursos:</h1>
+<form action="{% url 'post-create' %}" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Agregar">
+
+</form>
+{% else %}
+<h1>Resultados de la búsqueda:</h1>
+
+{% endif %}
+
+<!-- <ul>
+    {% for post in posts %}
+    <li> {{post.id}} - {{post.nombre_del_curso}} - {{post.descripcion_del_curso}} </li>
+    {% endfor %}
+</ul> -->
+
+{% endblock %}

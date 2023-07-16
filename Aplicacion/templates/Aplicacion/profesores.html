@@ -1,0 +1,31 @@
+{% extends "Aplicacion/base.html" %}
+
+{% load static %}
+
+{% block main %}
+
+<h1>Administracion de Profesores: </h1>
+
+<form action="{% url 'agregar-profesor' %}" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Agregar">
+
+</form>
+
+<ul>
+    {% if not profesores %}
+    <h2>Todavia no hay profesores disponibles</h2>
+    {% endif %}
+
+    {% for profesor in profesores %}
+    <li>
+        {{ profesor.id }} - {{profesor.nombre_del_profesor}} {{profesor.apellido_del_profesor}} - {{profesor.numero_de_profesor}}
+    </li>
+    {% endfor %}
+</ul>
+
+
+
+
+{% endblock %}

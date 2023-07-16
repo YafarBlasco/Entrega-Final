@@ -1,0 +1,31 @@
+{% extends "Aplicacion/base.html" %}
+
+{% load static %}
+
+{% block main %}
+
+<h1>Administracion de Alumnos: </h1>
+
+<form action="{% url 'agregar-alumno' %}" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Agregar">
+
+</form>
+
+<ul>
+  {% if not alumnos %}
+  <h2>Todavia no hay alumnos disponibles</h2>
+  {% endif %}
+
+
+    {% for alumno in alumnos %}
+    <li>{{ alumno.id }} - {{alumno.nombre_del_alumno }} {{alumno.apellido_del_alumno }} - {{alumno.numero_de_alumno }}</li>
+  {% endfor %}
+  
+</ul>
+
+
+
+
+{% endblock %}
